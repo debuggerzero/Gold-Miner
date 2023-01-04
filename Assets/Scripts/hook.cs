@@ -7,6 +7,7 @@ public class hook : MonoBehaviour
     float hookRtZ;
     public float rtSpeed;
     float rtDirection;
+    float hookState = 0; // 0为可用状态，1为不可用状态
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,11 @@ public class hook : MonoBehaviour
     void Update()
     {
         HookRotation();
+        if (Input.GetMouseButtonDown(0) && )
+        {
+            transform.position = new Vector3()
+        }
+
     }
 
     void HookRotation()

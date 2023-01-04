@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hook : MonoBehaviour
+public class Hook : MonoBehaviour
 {
     float hookRtZ; //钩子摆动角度
     public float rtSpeed; //摆动速度

@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hook : MonoBehaviour
+public class hook : MonoBehaviour
 {
-    float hookRtZ; //钩子摆动角度
-    public float rtSpeed; //摆动速度
+
     public float hookSpeed; //钩子速度
     Rigidbody rb; //刚体
 
-    float rtDirection; // 钩子摆动方向
-    float hookState = 0; // 0为闲置状态，1为发射状态，2为回收状态
+    public float rtDirection; // 钩子摆动方向
+    public float hookRtZ; //钩子摆动角度
+    public float rtSpeed; //摆动速度
+    public float hookState = 0; // 0为闲置状态，1为发射状态，2为回收状态
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,7 @@ public class Hook : MonoBehaviour
         }
 
     }
+    
 
     void OutHook() //出钩
     {
@@ -64,6 +66,11 @@ public class Hook : MonoBehaviour
         {
             hookState = 2;
         }
+        if (collision.CompareTag("minerals")) //抓住矿物
+        {
+            hookState = 2;
+            collision.transform.parent = transform;
+        }
     }
     
     void ReturnHook() //钩子收回
@@ -74,9 +81,9 @@ public class Hook : MonoBehaviour
     Time.deltaTime * hookSpeed * Mathf.Cos(hookRtZ * Mathf.PI / 180) + transform.position.y, 0);
         }
 
-        if (transform.position.y >= 2.7) //如果钩子回到原位
+        if (transform.position.y >= 2.95) //如果钩子回到原位
         {
-            transform.position = new Vector3(0.16f, 2.70f, 0); //精确复位
+            transform.position = new Vector3(0.16f, 2.95f, 0); //精确复位
             hookState = 0; //钩子回到闲置状态
         }
     }

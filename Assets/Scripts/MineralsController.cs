@@ -21,6 +21,7 @@ public class MineralsController : MonoBehaviour
         gold.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
         //创建圆形碰撞体
         gold.AddComponent<CircleCollider2D>();
+        gold.AddComponent<CircleCollider2D>().tag = "minerals";
         gold.GetComponent<CircleCollider2D>().isTrigger = true;
         gold.GetComponent<CircleCollider2D>().radius = 0.4f;
         //return gameObject;

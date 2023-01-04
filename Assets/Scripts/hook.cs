@@ -2,21 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class hook : MonoBehaviour
 {
-    GameObject hook;
     float hookRtZ;
+    public float rtSpeed;
+    float rtDirection;
     // Start is called before the first frame update
     void Start()
     {
-        //hook = GetComponent<GameObject>();
+        rtSpeed = 100;
+        rtDirection = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        hookRtZ += Time.deltaTime * 10;
-        transform.rotation = Quaternion.Euler(0, 0, 50);
+        HookRotation();
+    }
 
+    void HookRotation()
+    {
+        
+        if (hookRtZ >= 75)
+        {
+            rtDirection = -1;
+        }
+        else if (hookRtZ <= -75)
+        {
+            rtDirection = 1;
+        }
+        hookRtZ += Time.deltaTime * rtSpeed * rtDirection;
+        transform.rotation = Quaternion.Euler(0, 0, hookRtZ);
     }
 }
+

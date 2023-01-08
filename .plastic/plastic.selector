@@ -1,4 +1,0 @@
-repository "Gold-Miner@wishshenger@cloud.cn"
-  path "/"
-    br "/main"
-    co "/main"

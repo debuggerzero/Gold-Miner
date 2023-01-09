@@ -63,7 +63,7 @@ public class MineralsController : MonoBehaviour
 
         gold.transform.parent = transform;
         gold.transform.position = new Vector3(x, y, 0);
-        float scale = (1.5f - 0.3f) / (GlobalConstant.GOLD_MAX_SCORE - GlobalConstant.GOLD_MIN_SCORE) * score;
+        float scale = 1.5f * (1.5f - 0.3f) / (GlobalConstant.GOLD_MAX_SCORE - GlobalConstant.GOLD_MIN_SCORE) * score;
         gold.transform.localScale = new Vector3(scale, scale, scale);
         gold.AddComponent<SpriteRenderer>();
         gold.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("gold");

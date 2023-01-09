@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class hook : MonoBehaviour
 {
-
     public float hookSpeed; //钩子速度
     Rigidbody rb; //刚体
-
     public float rtDirection; // 钩子摆动方向
     public float hookRtZ; //钩子摆动角度
     public float rtSpeed; //摆动速度
@@ -43,9 +41,7 @@ public class hook : MonoBehaviour
             hookRtZ += Time.deltaTime * rtSpeed * rtDirection;
             transform.rotation = Quaternion.Euler(0, 0, hookRtZ);
         }
-
     }
-    
 
     void OutHook() //出钩
     {
@@ -69,6 +65,7 @@ public class hook : MonoBehaviour
         if (collision.CompareTag("minerals")) //抓住矿物
         {
             hookState = 2;
+            collision.transform.position = transform.GetChild(1).position;
             collision.transform.parent = transform;
         }
     }
@@ -79,13 +76,15 @@ public class hook : MonoBehaviour
         {
             transform.position = new Vector3(-Time.deltaTime * hookSpeed * Mathf.Sin(hookRtZ * Mathf.PI / 180) + transform.position.x,
     Time.deltaTime * hookSpeed * Mathf.Cos(hookRtZ * Mathf.PI / 180) + transform.position.y, 0);
+            if (transform.position.y >= 2.95) //如果钩子回到原位
+            {
+                transform.position = new Vector3(0.16f, 2.95f, 0); //精确复位
+                hookState = 0; //钩子回到闲置状态
+                if(transform.childCount > 2) Destroy(transform.GetChild(2).gameObject); //如果子物体至少有3个则删除子物体
+            }
         }
 
-        if (transform.position.y >= 2.95) //如果钩子回到原位
-        {
-            transform.position = new Vector3(0.16f, 2.95f, 0); //精确复位
-            hookState = 0; //钩子回到闲置状态
-        }
+
     }
 }
 

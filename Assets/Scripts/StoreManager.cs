@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class StoreManager : MonoBehaviour
 {
-    public Canvas StoreCanvas;
+
     void Start()
     {
-        StoreCanvas.gameObject.SetActive(false);
+
     }
 
     void Update()
@@ -17,10 +17,10 @@ public class StoreManager : MonoBehaviour
 
     public void ShowtheStore()
     {
-        StoreCanvas.gameObject.SetActive(true);
+
     }
     public void NextLevel()
     {
-        StoreCanvas.gameObject.SetActive(false);
+        SceneManager.LoadScene(2);
     }
 }
